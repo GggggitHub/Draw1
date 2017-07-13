@@ -8,17 +8,28 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 自定义view1
+ * by zyj 2017-7-13 14:05:29
+ * 参考文章：
+ * http://mp.weixin.qq.com/s?__biz=MzIwNTczNTY0NA==&mid=2247483657&idx=1&sn=0e3a9f84d9924ef4125c885592dbb843&chksm=972d12baa05a9bac18af5d335d65eba9b71146a9fec143be6ecf62d4a4bd2e7179c726cdbb81&mpshare=1&scene=23&srcid=0713nncCUFGL3eOYjdlaKgdm#rd
+ */
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     TabLayout tabLayout;
     ViewPager pager;
+    LifeCircle circle = new LifeCircle();
+
     List<PageModel> pageModels = new ArrayList<>();
 
     {
+        Log.i(TAG, "instance initializer: ");
         pageModels.add(new PageModel(R.layout.sample_color, R.string.title_draw_color, R.layout.practice_color));
         pageModels.add(new PageModel(R.layout.sample_circle, R.string.title_draw_circle, R.layout.practice_circle));
         pageModels.add(new PageModel(R.layout.sample_rect, R.string.title_draw_rect, R.layout.practice_rect));
@@ -36,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.i(TAG, "onCreate: ");
         pager = (ViewPager) findViewById(R.id.pager);
+        Log.i(TAG, "onCreate: 2");
         pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
 
             @Override
@@ -67,14 +79,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class PageModel {
-        @LayoutRes int sampleLayoutRes;
-        @StringRes int titleRes;
-        @LayoutRes int practiceLayoutRes;
+        @LayoutRes
+        int sampleLayoutRes;
+        @StringRes
+        int titleRes;
+        @LayoutRes
+        int practiceLayoutRes;
 
         PageModel(@LayoutRes int sampleLayoutRes, @StringRes int titleRes, @LayoutRes int practiceLayoutRes) {
             this.sampleLayoutRes = sampleLayoutRes;
             this.titleRes = titleRes;
             this.practiceLayoutRes = practiceLayoutRes;
+        }
+    }
+
+    class LifeCircle {
+        public LifeCircle() {
+            Log.i(TAG, "LifeCircle: 属性");
         }
     }
 }
