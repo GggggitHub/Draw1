@@ -19,6 +19,12 @@ import java.util.List;
  * by zyj 2017-7-13 14:05:29
  * 参考文章：
  * http://mp.weixin.qq.com/s?__biz=MzIwNTczNTY0NA==&mid=2247483657&idx=1&sn=0e3a9f84d9924ef4125c885592dbb843&chksm=972d12baa05a9bac18af5d335d65eba9b71146a9fec143be6ecf62d4a4bd2e7179c726cdbb81&mpshare=1&scene=23&srcid=0713nncCUFGL3eOYjdlaKgdm#rd
+ *
+ * 执行顺序
+ * 07-13 14:15:53.665 24836-24836/com.hencoder.hencoderpracticedraw1 I/MainActivity: LifeCircle: 属性
+ * 07-13 14:15:53.665 24836-24836/com.hencoder.hencoderpracticedraw1 I/MainActivity: instance initializer:
+ * 07-13 14:15:53.715 24836-24836/com.hencoder.hencoderpracticedraw1 I/MainActivity: onCreate:
+ * 07-13 14:15:53.715 24836-24836/com.hencoder.hencoderpracticedraw1 I/MainActivity: onCreate: 2
  */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
