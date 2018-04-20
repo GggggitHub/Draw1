@@ -7,7 +7,11 @@
     android:orientation="vertical"
     android:background="#f8f8f8"
     tools:context="com.hencoder.hencoderpracticedraw1.MainActivity">
-
+<Button
+    android:id="@+id/btn_pull_down"
+    android:text="上拉悬停"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"

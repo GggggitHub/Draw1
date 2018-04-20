@@ -1,5 +1,6 @@
 package com.hencoder.hencoderpracticedraw1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
@@ -10,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +79,16 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(pager);
+
+        //上拉悬停
+        {
+            findViewById(R.id.btn_pull_down).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this,PullActivity.class));
+                }
+            });
+        }
     }
 
     @Override
