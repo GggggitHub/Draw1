@@ -17,8 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".PullActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".PullActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            >
+        </activity>
+        <activity android:name=".beziertest.Pratcie2Activity">
         </activity>
     </application>
 

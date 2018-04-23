@@ -11,4 +11,5 @@
     <string name="title_draw_path">drawPath()</string>
     <string name="title_draw_histogram">直方图</string>
     <string name="title_draw_pie_chart">饼图</string>
+    <string name="title_pathmorphing_bezier">路径变化贝塞尔</string>
 </resources>

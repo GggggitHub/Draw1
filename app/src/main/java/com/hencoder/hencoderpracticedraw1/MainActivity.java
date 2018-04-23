@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
+import com.hencoder.hencoderpracticedraw1.beziertest.Pratcie2Activity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +37,15 @@ public class MainActivity extends AppCompatActivity {
     LifeCircle circle = new LifeCircle();
 
     List<PageModel> pageModels = new ArrayList<>();
+    FragmentPagerAdapter fragmentPagerAdapter;
+    List<PageModel> pageModelBeziers = new ArrayList<>();
 
     {
         Log.i(TAG, "instance initializer: ");
+        Log.i(TAG, "instance initializer: ");
+//        pageModels.add(new PageModel(0x00, R.string.title_pathmorphing_bezier, R.layout.bezier_pathmorphing));
+//        pageModelBeziers.add(new PageModel(0x00, R.string.title_pathmorphing_bezier, R.layout.bezier_pathmorphing));
+
         pageModels.add(new PageModel(R.layout.sample_color, R.string.title_draw_color, R.layout.practice_color));
         pageModels.add(new PageModel(R.layout.sample_circle, R.string.title_draw_circle, R.layout.practice_circle));
         pageModels.add(new PageModel(R.layout.sample_rect, R.string.title_draw_rect, R.layout.practice_rect));
@@ -51,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         pageModels.add(new PageModel(R.layout.sample_pie_chart, R.string.title_draw_pie_chart, R.layout.practice_pie_chart));
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +67,34 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "onCreate: ");
         pager = (ViewPager) findViewById(R.id.pager);
         Log.i(TAG, "onCreate: 2");
-        pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+        fragmentPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
 
             @Override
             public Fragment getItem(int position) {
                 PageModel pageModel = pageModels.get(position);
                 return PageFragment.newInstance(pageModel.sampleLayoutRes, pageModel.practiceLayoutRes);
             }
+
+            // Called when the host view is attempting to determine if an item's position has changed. Returns POSITION_UNCHANGED if the position of the given item has not changed or POSITION_NONE if the item is no longer present in the adapter.
+//           @Override
+//            public int getItemPosition(Object object) {
+//                return POSITION_UNCHANGED;
+//            }
+//            从网上找到的解决办法是，覆写getItemPosition使其返POSITION_NONE，
+//            以触发Fragment的销毁和重建。可是这将导致Fragment频繁的销毁和重建，并不是最佳的方法。
+//            后来我把注意力放在了入口参数object上，"representing an item",
+//            实际上就是Fragment，只需要为Fragment提供一个更新view的public方法：
+
+//            @Override
+//            public int getItemPosition(Object object) {
+//
+////                if (object instanceof PageFragment) {
+////                    ((PageFragment) object).updateDate();
+//////                }
+////                return super.getItemPosition(object);
+////                return POSITION_UNCHANGED;
+//                return POSITION_NONE;
+//            }
 
             @Override
             public int getCount() {
@@ -75,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
             public CharSequence getPageTitle(int position) {
                 return getString(pageModels.get(position).titleRes);
             }
-        });
+        };
+        pager.setAdapter(fragmentPagerAdapter);
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(pager);
@@ -89,6 +120,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        //贝塞尔曲线
+        {
+            findViewById(R.id.btn_bezier).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    startActivity(new Intent(MainActivity.this, Pratcie2Activity.class));
+//                    pageModels.clear();
+//                    pageModels.addAll(pageModelBeziers);
+////                   pageModels=pageModelBeziers;
+//                   fragmentPagerAdapter.notifyDataSetChanged();
+                }
+            });
+        }
     }
 
     @Override
@@ -96,15 +142,15 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private class PageModel {
-        @LayoutRes
+    public class PageModel {
         int sampleLayoutRes;
         @StringRes
         int titleRes;
         @LayoutRes
         int practiceLayoutRes;
 
-        PageModel(@LayoutRes int sampleLayoutRes, @StringRes int titleRes, @LayoutRes int practiceLayoutRes) {
+//        PageModel(@LayoutRes int sampleLayoutRes, @StringRes int titleRes, @LayoutRes int practiceLayoutRes) {
+        public PageModel(int sampleLayoutRes,@StringRes  int titleRes, @LayoutRes int practiceLayoutRes) {
             this.sampleLayoutRes = sampleLayoutRes;
             this.titleRes = titleRes;
             this.practiceLayoutRes = practiceLayoutRes;
