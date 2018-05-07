@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 //        pageModels.add(new PageModel(0x00, R.string.title_pathmorphing_bezier, R.layout.bezier_pathmorphing));
 //        pageModelBeziers.add(new PageModel(0x00, R.string.title_pathmorphing_bezier, R.layout.bezier_pathmorphing));
 
+//        pageModels.add(new PageModel(R.layout.sample_color, R.string.title_draw_color, R.layout.test_measure_getseize));
         pageModels.add(new PageModel(R.layout.sample_color, R.string.title_draw_color, R.layout.practice_color));
         pageModels.add(new PageModel(R.layout.sample_circle, R.string.title_draw_circle, R.layout.practice_circle));
         pageModels.add(new PageModel(R.layout.sample_rect, R.string.title_draw_rect, R.layout.practice_rect));

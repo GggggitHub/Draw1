@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
@@ -46,9 +47,13 @@ public class PathMorphingBezierView extends View implements View.OnClickListener
 
     }
 
+    private static final String TAG = "PathMorphingBezierView";
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+
+        Log.i(TAG, "onSizeChanged: mStartPointY== "+mStartPointY);
         mFlagPointOneX = mStartPointX = w / 4;
         mFlagPointOneY = mStartPointY = h / 2 - 100;
 
